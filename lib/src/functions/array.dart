@@ -1,5 +1,5 @@
 import 'package:numdart/src/array.dart';
 
-Array array(List<int> intList) {
+Array array(List<num> intList) {
   return Array(intList);
 }

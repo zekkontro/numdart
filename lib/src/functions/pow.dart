@@ -1,5 +1,5 @@
 import 'package:numdart/src/array.dart';
-import 'package:numdart/src/functions/is_empty_error.dart';
+import 'package:numdart/src/error/is_empty_error.dart';
 import 'dart:math' as m;
 
 Array powArray(List<double> a, List<double> b) {

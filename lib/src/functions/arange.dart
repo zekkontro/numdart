@@ -1,5 +1,5 @@
 import 'package:numdart/src/array.dart';
-import 'package:numdart/src/functions/check_positive_status.dart';
+import 'package:numdart/src/error/check_positive_status.dart';
 
 Array arange(int start, int stop, int step) {
   checkPositiveStatus(start);

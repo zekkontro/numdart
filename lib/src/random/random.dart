@@ -23,7 +23,6 @@ class _DefaultRandomProvider with AbstractRandomProvider {
   double nextDouble() => _internal.nextDouble();
 }
 
-/// A generator of random values using a supplied [math.Random].
 class _CoreRandomProvider with AbstractRandomProvider {
   m.Random random;
 
@@ -34,7 +33,7 @@ class _CoreRandomProvider with AbstractRandomProvider {
 }
 
 class Random {
-  int randomBetween(int from, int to,
+  int randbet(int from, int to,
       {AbstractRandomProvider provider = const _DefaultRandomProvider()}) {
     if (from > to) {
       throw ArgumentError('$from cannot be > $to');
@@ -62,23 +61,18 @@ class Random {
     return (value * (range + 1)).floor() + min;
   }
 
-  /// Generates a random string of [length] with characters
-  /// between ascii [from] to [to].
-  /// Defaults to characters of ascii '!' to '~'.
   String randstr(int length,
       {int from = asciiStart,
       int to = asciiEnd,
       AbstractRandomProvider provider = const _DefaultRandomProvider()}) {
     return String.fromCharCodes(List.generate(
-        length, (index) => randomBetween(from, to, provider: provider)));
+        length, (index) => randbet(from, to, provider: provider)));
   }
 
-  /// Generates a random string of [length] with only numeric characters.
   String randnum(int length,
           {AbstractRandomProvider provider = const _DefaultRandomProvider()}) =>
       randstr(length, from: numericStart, to: numericEnd, provider: provider);
 
-  /// Generates a random string of [length] with only alpha characters.
   String randalpha(int length,
       {AbstractRandomProvider provider = const _DefaultRandomProvider()}) {
     var lowerAlphaWeight = provider.nextDouble();
@@ -86,7 +80,7 @@ class Random {
     var sumWeight = lowerAlphaWeight + upperAlphaWeight;
     lowerAlphaWeight /= sumWeight;
     upperAlphaWeight /= sumWeight;
-    var lowerAlphaLength = randomBetween(0, length, provider: provider);
+    var lowerAlphaLength = randbet(0, length, provider: provider);
     var upperAlphaLength = length - lowerAlphaLength;
     var lowerAlpha = randstr(lowerAlphaLength,
         from: lowerAlphaStart, to: lowerAlphaEnd, provider: provider);
@@ -95,17 +89,15 @@ class Random {
     return randmerge(lowerAlpha, upperAlpha);
   }
 
-  /// Generates a random string of [length] with alpha-numeric characters.
   String randalphanum(int length,
       {AbstractRandomProvider provider = const _DefaultRandomProvider()}) {
-    var alphaLength = randomBetween(0, length, provider: provider);
+    var alphaLength = randbet(0, length, provider: provider);
     var numericLength = length - alphaLength;
     var alpha = randalpha(alphaLength, provider: provider);
     var numeric = randnum(numericLength, provider: provider);
     return randmerge(alpha, numeric);
   }
 
-  /// Merge [a] with [b] and shuffle.
   String randmerge(String a, String b) {
     var mergedCodeUnits = List.from('$a$b'.codeUnits);
     mergedCodeUnits.shuffle();

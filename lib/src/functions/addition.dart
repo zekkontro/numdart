@@ -1,7 +1,7 @@
 import 'package:numdart/src/array.dart';
-import 'package:numdart/src/functions/is_empty_error.dart';
+import 'package:numdart/src/error/is_empty_error.dart';
 
-Array addition(List<double> a, List<double> b) {
+Array addition(List<num> a, List<num> b) {
   if (a.isEmpty) {
     isEmptyError(a);
   }
@@ -10,7 +10,7 @@ Array addition(List<double> a, List<double> b) {
     isEmptyError(b);
   }
 
-  List<double> base = List<double>.generate(
+  List<num> base = List<num>.generate(
       a.length,
       (index) => index + 1 > a.length
           ? 0

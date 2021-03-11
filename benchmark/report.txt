@@ -1,0 +1,4 @@
+arange function -> 0.86 sec -> 10000000 element
+arange + sin function -> 18.34 sec -> 10000000 element
+arange + addition function -> 3.107933 sec -> 10000000 element
+arange + degress function -> 14.62 sec -> 10000000 element
